@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <!-- Include your JavaScript file to handle form opening and closing -->
+
+</head>
+<body>
+
+<div class="container">
+
+    <div class="table-container">
+        <h2>Students</h2>
+
+        <table>
+          <tr>
+            <th>Sno</th>
+            <th>Sname</th>
+            <th>Ssex</th>
+            <th>Sage</th>
+            <th>Sdept</th>
+          </tr>
+          {% for student in students %}
+          <tr>
+            <td>{{ student[0] }}</td>
+            <td>{{ student[1] }}</td>
+            <td>{{ student[2] }}</td>
+            <td>{{ student[3] }}</td>
+            <td>{{ student[4] }}</td>
+          </tr>
+          {% endfor %}
+        </table>
+
+        <!-- Add, Update, Delete Buttons for Students -->
+        <button onclick="openForm('addStudentForm')">Add Student</button>
+        <button onclick="openForm('updateStudentForm')">Update Student</button>
+        <button onclick="openForm('deleteStudentForm')">Delete Student</button>
+
+    </div>
+
+    <div class="table-container">
+        <h2>Courses</h2>
+
+        <table>
+          <tr>
+            <th>Cno</th>
+            <th>Cname</th>
+            <th>Cpno</th>
+            <th>Ccredit</th>
+          </tr>
+          {% for course in courses %}
+          <tr>
+            <td>{{ course[0] }}</td>
+            <td>{{ course[1] }}</td>
+            <td>{{ course[2] }}</td>
+            <td>{{ course[3] }}</td>
+          </tr>
+          {% endfor %}
+        </table>
+     <!-- Add, Update, Delete Buttons for Courses -->
+        <button onclick="openForm('addCourseForm')">Add Course</button>
+        <button onclick="openForm('updateCourseForm')">Update Course</button>
+        <button onclick="openForm('deleteCourseForm')">Delete Course</button>
+    </div>
+
+    <div class="table-container">
+        <h2>Grades</h2>
+
+        <table>
+          <tr>
+            <th>Sno</th>
+            <th>Cno</th>
+            <th>Grade</th>
+          </tr>
+          {% for grade in grades %}
+          <tr>
+            <td>{{ grade[0] }}</td>
+            <td>{{ grade[1] }}</td>
+            <td>{{ grade[2] }}</td>
+          </tr>
+          {% endfor %}
+        </table>
+    <!-- Add, Update, Delete Buttons for Grades -->
+        <button onclick="openForm('addGradeForm')">Add Grade</button>
+        <button onclick="openForm('updateGradeForm')">Update Grade</button>
+        <button onclick="openForm('deleteGradeForm')">Delete Grade</button>
+
+    </div>
+
+    <!-- Add Student Form -->
+    <div class="form-popup" id="addStudentForm">
+        <form action="/addStudent" class="form-container" method="post">
+            <h2>Add Student</h2>
+            <label for="sno"><b>Sno</b></label>
+            <input type="text" placeholder="Enter Sno" name="sno" required>
+
+            <label for="sname"><b>Sname</b></label>
+            <input type="text" placeholder="Enter Sname" name="sname" required>
+
+            <label for="ssex"><b>Ssex</b></label>
+            <input type="text" placeholder="Enter Ssex" name="ssex" required>
+
+            <label for="sage"><b>Sage</b></label>
+            <input type="text" placeholder="Enter Sage" name="sage" required>
+
+            <label for="sdept"><b>Sdept</b></label>
+            <input type="text" placeholder="Enter Sdept" name="sdept" required>
+
+            <button type="submit" class="btn" onclick="addStudent()">Add Student</button>
+            <button type="button" class="btn cancel" onclick="closeForm('addStudentForm')">Close</button>
+        </form>
+
+</div>
+
+    <!-- Update Student Form -->
+    <div class="form-popup" id="updateStudentForm">
+        <form action="/updateStudent" class="form-container" method="post">
+            <h2>Update Student</h2>
+            <label for="sno"><b>Sno</b></label>
+            <input type="text" placeholder="Enter Sno" name="sno" required>
+
+            <label for="sname"><b>Sname</b></label>
+            <input type="text" placeholder="Enter Sname" name="sname" required>
+
+            <label for="ssex"><b>Ssex</b></label>
+            <input type="text" placeholder="Enter Ssex" name="ssex" required>
+
+            <label for="sage"><b>Sage</b></label>
+            <input type="text" placeholder="Enter Sage" name="sage" required>
+
+            <label for="sdept"><b>Sdept</b></label>
+            <input type="text" placeholder="Enter Sdept" name="sdept" required>
+
+            <button type="submit" class="btn" onclick="updateStudent()">Update Student</button>
+            <button type="button" class="btn cancel" onclick="closeForm('updateStudentForm')">Close</button>
+        </form>
+    </div>
+
+    <!-- Delete Student Form -->
+    <div class="form-popup" id="deleteStudentForm">
+        <form action="/deleteStudent" class="form-container" method="post">
+            <h2>Delete Student</h2>
+            <label for="sno"><b>Sno</b></label>
+            <input type="text" placeholder="Enter Sno" name="sno" required>
+
+            <button type="submit" class="btn" onclick="deleteStudent()">Delete Student</button>
+            <button type="button" class="btn cancel" onclick="closeForm('deleteStudentForm')">Close</button>
+        </form>
+    </div>
+
+    <!-- Add Course Form -->
+    <div class="form-popup" id="addCourseForm">
+        <form action="/addCourse" class="form-container" method="post">
+            <h2>Add Course</h2>
+            <label for="cno"><b>Cno</b></label>
+            <input type="text" placeholder="Enter Cno" name="cno" required>
+
+            <label for="cname"><b>Cname</b></label>
+            <input type="text" placeholder="Enter Cname" name="cname" required>
+
+            <label for="cpno"><b>Cpno</b></label>
+            <input type="text" placeholder="Enter Cpno" name="cpno" required>
+
+            <label for="ccredit"><b>Ccredit</b></label>
+            <input type="text" placeholder="Enter Ccredit" name="ccredit" required>
+
+            <button type="submit" class="btn" onclick="addCourse()">Add Course</button>
+            <button type="button" class="btn cancel" onclick="closeForm('addCourseForm')">Close</button>
+        </form>
+    </div>
+
+
+    <!-- Update Course Form -->
+    <div class="form-popup" id="updateCourseForm">
+        <form action="/updateCourse" class="form-container" method="post">
+            <h2>Update Course</h2>
+            <label for="cno"><b>Cno</b></label>
+            <input type="text" placeholder="Enter Cno" name="cno" required>
+
+            <label for="cname"><b>Cname</b></label>
+            <input type="text" placeholder="Enter Cname" name="cname" required>
+
+            <label for="cpno"><b>Cpno</b></label>
+            <input type="text" placeholder="Enter Cpno" name="cpno" required>
+
+            <label for="ccredit"><b>Ccredit</b></label>
+            <input type="text" placeholder="Enter Ccredit" name="ccredit" required>
+
+            <button type="submit" class="btn" onclick="updateCourse()">Update Course</button>
+            <button type="button" class="btn cancel" onclick="closeForm('updateCourseForm')">Close</button>
+        </form>
+    </div>
+
+    <!-- Delete Course Form -->
+    <div class="form-popup" id="deleteCourseForm">
+        <form action="/deleteCourse" class="form-container" method="post">
+            <h2>Delete Course</h2>
+            <label for="cno"><b>Cno</b></label>
+            <input type="text" placeholder="Enter Cno" name="cno" required>
+
+            <button type="submit" class="btn" onclick="deleteCourse()">Delete Course</button>
+            <button type="button" class="btn cancel" onclick="closeForm('deleteCourseForm')">Close</button>
+        </form>
+    </div>
+
+    <!-- Add Grade Form -->
+    <div class="form-popup" id="addGradeForm">
+        <form action="/addGrade" class="form-container" method="post">
+            <h2>Add Grade</h2>
+            <label for="sno"><b>Sno</b></label>
+            <input type="text" placeholder="Enter Sno" name="sno" required>
+
+            <label for="cno"><b>Cno</b></label>
+            <input type="text" placeholder="Enter Cno" name="cno" required>
+
+            <label for="grade"><b>Grade</b></label>
+            <input type="text" placeholder="Enter Grade" name="grade" required>
+
+            <button type="submit" class="btn" onclick="addSC()">Add Grade</button>
+            <button type="button" class="btn cancel" onclick="closeForm('addGradeForm')">Close</button>
+        </form>
+    </div>
+
+    <!-- Update Grade Form -->
+    <div class="form-popup" id="updateGradeForm">
+        <form action="/updateGrade" class="form-container" method="post">
+            <h2>Update Grade</h2>
+            <label for="sno"><b>Sno</b></label>
+            <input type="text" placeholder="Enter Sno" name="sno" required>
+
+            <label for="cno"><b>Cno</b></label>
+            <input type="text" placeholder="Enter Cno" name="cno" required>
+
+            <label for="grade"><b>Grade</b></label>
+            <input type="text" placeholder="Enter Grade" name="grade" required>
+
+            <button type="submit" class="btn" onclick="updateSC()">Update Grade</button>
+            <button type="button" class="btn cancel" onclick="closeForm('updateGradeForm')">Close</button>
+        </form>
+    </div>
+
+    <!-- Delete Grade Form -->
+    <div class="form-popup" id="deleteGradeForm">
+        <form action="/deleteGrade" class="form-container" method="post">
+            <h2>Delete Grade</h2>
+            <label for="sno"><b>Sno</b></label>
+            <input type="text" placeholder="Enter Sno" name="sno" required>
+
+            <label for="cno"><b>Cno</b></label>
+            <input type="text" placeholder="Enter Cno" name="cno" required>
+
+            <button type="submit" class="btn" onclick="deleteSC()">Delete Grade</button>
+            <button type="button" class="btn cancel" onclick="closeForm('deleteGradeForm')">Close</button>
+        </form>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+
+</body>
+</html>

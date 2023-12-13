@@ -1,0 +1,32 @@
+.container {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.table-container {
+    flex: 1 0 30%;
+    margin: 10px;
+    box-sizing: border-box;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+table, th, td {
+    border: 1px solid black;
+}
+
+th, td {
+    padding: 15px;
+    text-align: left;
+}
+.form-input {
+    margin-bottom: 10px;
+}
+.form-popup {
+    display: none;
+    /* ...other styles... */
+}
